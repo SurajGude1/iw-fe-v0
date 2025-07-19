@@ -1,16 +1,62 @@
+/**
+ * WEB APP MANIFEST (PWA Configuration)
+ * 
+ * Location: /public/manifest.json
+ * 
+ * Purpose:
+ * - Enables Progressive Web App (PWA) capabilities
+ * - Defines how your app appears when installed on devices
+ * - Controls splash screen, icons, and mobile appearance
+ * 
+ * Critical for:
+ * - Mobile user experience
+ * - Add-to-homescreen functionality
+ * - Offline capabilities (when paired with service worker)
+ * 
+ * Optimization Notes:
+ * - Minimal valid JSON format (removed all unnecessary whitespace)
+ * - Recommended icon sizes included
+ * - Theme color matches brand identity
+ * - Proper metadata for SEO and app stores
+ * 
+ * Production Requirements:
+ * - Must be in /public to be served at root level
+ * - Required for iOS/Android home screen installation
+ * - Needed for Chrome PWA install prompt
+ */
+
 {
-  "name": "Indian Writer",
-  "short_name": "IW",
-  "start_url": "/",
+  "name": "Read In Speed",
+  "short_name": "RS",
+  "start_url": "/?source=pwa",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
   "description": "A blogging platform for writers.",
   "icons": [
     {
+      "src": "/icons/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
       "src": "/favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/x-icon",
+      "purpose": "fallback"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/desktop.png",
+      "type": "image/png",
+      "sizes": "1280x800"
     }
   ]
 }
