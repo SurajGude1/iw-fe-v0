@@ -1,0 +1,479 @@
+.BlogWrapper {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1.4rem;
+    gap: 2.4rem;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    background-color: var(--off-white);
+}
+
+.Blog {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 1.8rem;
+    background-color: var(--rich-black);
+    box-sizing: border-box;
+    border-radius: 0.5rem;
+}
+
+.Title {
+    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+    line-height: 1.5;
+    color: var(--off-white);
+    margin: 0;
+    font-weight: 600;
+    text-align: start;
+}
+
+.Actions {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2.6rem;
+    padding: 1.4rem 0;
+    border-top: 1px solid var(--charcoal);
+    border-bottom: 1px solid var(--charcoal);
+}
+
+.IconLabel {
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+}
+
+.Icon {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    cursor: pointer;
+    color: var(--light-grey);
+}
+
+.Span {
+    font-size: 0.95rem;
+    color: var(--light-grey);
+}
+
+.Content {
+    width: 100%;
+    color: var(--off-white);
+    font-family: 'Calibri', sans-serif;
+    font-size: 14pt;
+    line-height: 2;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    word-spacing: 0.04em;
+}
+
+
+.Content * {
+    color: var(--off-white) !important;
+    font-family: inherit !important;
+    line-height: inherit !important;
+    text-align: inherit !important;
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    background: transparent !important;
+}
+
+.Content p,
+.Content span,
+.Content div,
+.Content li,
+.Content a {
+    color: var(--off-white) !important;
+}
+
+.Content img {
+    max-width: 95% !important;
+    height: auto !important;
+    display: block;
+    margin: 1.5rem auto !important;
+    border-radius: 0.5rem;
+}
+
+.Content iframe {
+    max-width: 100% !important;
+    display: block;
+    margin: 1.5rem auto !important;
+}
+
+.Content .MsoNormal {
+    margin-bottom: 1em !important;
+}
+
+.Content hr {
+    border: 0;
+    border-top: 1px solid var(--charcoal);
+    margin: 1em 0 !important;
+}
+
+.Content ul {
+    list-style-type: disc;
+    padding-left: 40px !important;
+    margin: 1em 0 !important;
+}
+
+.Content li {
+    margin-bottom: 0.5em !important;
+    position: relative !important;
+}
+
+.Content strong {
+    font-weight: bold !important;
+}
+
+.Content em {
+    font-style: italic !important;
+}
+
+.Content [align="center"] {
+    text-align: center !important;
+}
+
+.Content span[style*="font-size"] {
+    font-size: inherit !important;
+}
+
+.Content span[style*="font-family"] {
+    font-family: inherit !important;
+}
+
+.Content span[style*="line-height"] {
+    line-height: inherit !important;
+}
+
+/* Add these to your existing CSS */
+.SkeletonVideo {
+    width: 100%;
+    height: 12rem;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+}
+
+.VideoAds {
+    width: 220px;
+    border-radius: 8px;
+    background: var(--rich-black);
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 460px;
+}
+
+.VideoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.VideoContainer video {
+    width: 100%;
+    height: 12rem;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* Loading Skeletons with Shimmer Effect */
+@keyframes shimmer {
+    0% {
+        background-position: -100% 0;
+    }
+
+    100% {
+        background-position: 100% 0;
+    }
+}
+
+.SkeletonShimmer {
+    background: linear-gradient(90deg, var(--charcoal) 25%, #3a3a3a 50%, var(--charcoal) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+    border-radius: 4px;
+}
+
+.SkeletonTitle {
+    height: 42px;
+    width: 80%;
+    margin-bottom: 24px;
+}
+
+.SkeletonActions {
+    width: 100%;
+    display: flex;
+    gap: 2.5rem;
+    padding: 1.4rem 0;
+    border-top: 1px solid var(--charcoal);
+    border-bottom: 1px solid var(--charcoal);
+    margin-bottom: 24px;
+}
+
+.SkeletonIconLabel {
+    height: 24px;
+    width: 80px;
+}
+
+.SkeletonContent {
+    height: 500px;
+    width: 100%;
+}
+
+.SkeletonRecommendedHeading {
+    height: 24px;
+    width: 60%;
+    margin-bottom: 1.5rem;
+}
+
+.SkeletonRecommendedCard {
+    background: var(--rich-black);
+    border-radius: 0.4rem;
+    height: 80px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    display: flex;
+}
+
+.SkeletonRecommendedImage {
+    width: 80px;
+    height: 80px;
+    min-width: 80px;
+}
+
+.SkeletonRecommendedTitle {
+    flex: 1;
+    height: 60px;
+    margin: 10px 0.4rem;
+}
+
+/* Recommended Section */
+.Recommended {
+    width: 20%;
+    position: sticky;
+    top: 1.4rem;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+}
+
+.RecommendedHeading {
+    margin: 0 0 1.5rem 0;
+    color: var(--charcoal);
+    font-size: 1.2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--charcoal);
+}
+
+.RecommendedCard {
+    background: var(--rich-black);
+    border-radius: 0.4rem;
+    height: 80px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.RecommendedCard:last-child {
+    margin-bottom: 0;
+}
+
+.RecommendedLink {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.RecommendedCardContent {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.RecommendedImageContainer {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    min-width: 80px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.RecommendedImage {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.RecommendedTitle {
+    margin: 0;
+    font-weight: 500 !important;
+    color: var(--off-white);
+    font-size: 0.8rem;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+    margin-right: 0.4rem;
+}
+
+/* Error State */
+.Error {
+    padding: 24px;
+    text-align: center;
+    color: #d32f2f;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.ErrorHelp {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.RetryButton {
+    margin-top: 16px;
+    padding: 8px 16px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    min-width: 100px;
+}
+
+.RetryButton:hover {
+    background-color: #1565c0;
+}
+
+.RetryButton:disabled {
+    background-color: #90caf9;
+    cursor: not-allowed;
+}
+
+.HomeLink {
+    color: #1976d2;
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 8px;
+    padding: 6px 12px;
+    border: 1px solid #1976d2;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.HomeLink:hover {
+    text-decoration: none;
+    background-color: #e3f2fd;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1200px) {
+    .Blog {
+        width: 60%;
+    }
+
+    .Recommended {
+        width: 25%;
+    }
+}
+
+@media (max-width: 992px) {
+    .BlogWrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .Blog {
+        width: 90%;
+        padding: 1.4rem;
+    }
+
+    .Recommended {
+        width: 90%;
+        position: static;
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .BlogWrapper {
+        padding: 0rem;
+    }
+
+    .Blog {
+        width: 100%;
+        padding: 1.2rem;
+        gap: 1.5rem;
+    }
+
+    .Title {
+        font-size: 1.6rem;
+    }
+
+    .Actions {
+        gap: 1rem;
+        padding: 1rem 0;
+    }
+
+    .Span {
+        font-size: 0.85rem;
+    }
+
+    .Recommended {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .Blog {
+        padding: 1rem;
+        gap: 1.2rem;
+        border-radius: 0;
+    }
+
+    .Title {
+        font-size: 1.4rem;
+    }
+
+    .Actions {
+        gap: 2.2rem;
+    }
+
+    .IconLabel {
+        gap: 0.4rem;
+    }
+
+    .Icon {
+        font-size: 1rem;
+    }
+
+    .RecommendedTitle {
+        font-size: 0.75rem;
+    }
+}

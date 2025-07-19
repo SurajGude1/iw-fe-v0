@@ -1,0 +1,279 @@
+.Overlay {
+  position: fixed;
+  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  display: grid;
+  place-items: center;
+  z-index: 1001;
+}
+
+.Modal {
+  background-color: white;
+  border-radius: 0.75rem;
+  width: min(95%, 28rem);
+  height: 35rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease-out;
+  z-index: 1001;
+}
+
+.Modal::-webkit-scrollbar {
+  width: 0.1rem;
+}
+
+.Modal::-webkit-scrollbar-track {
+  background: var(--off-white);
+}
+
+.Modal::-webkit-scrollbar-thumb {
+  background-color: var(--charcoal);
+  border-radius: 9999px;
+}
+
+.Modal::-webkit-scrollbar-thumb:hover {
+  background-color: var(--off-white);
+}
+
+.CloseButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 10;
+  color: #6b7280;
+  transition: color 0.2s ease, transform 0.5s ease;
+}
+
+.CloseButton:hover {
+  transform: rotate(180deg);
+}
+
+.CloseIcon:hover {
+  color: var(--coke-red);
+}
+
+.CloseIcon {
+  width: 24px;
+  height: 24px;
+  color: var(--charcoal);
+}
+
+.FormTitle {
+  font-size: 1.4rem;
+  font-weight: 300;
+  margin-bottom: 0.4rem;
+  text-align: center;
+  color: var(--rich-black);
+  flex-shrink: 0;
+  line-height: 1.3;
+}
+
+.Form {
+  display: grid;
+  flex-direction: column;
+  height: 100%;
+  padding: 24px;
+  gap: 1.25rem;
+}
+
+
+/* ScrollContainer reused and merged */
+.ScrollContainer {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 0;
+  /* unified from conflicting values */
+}
+
+/* Custom scrollbar styles for ScrollContainer */
+.ScrollContainer::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ScrollContainer::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.ScrollContainer::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.ScrollContainer::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Select and SelectContainer combined */
+.SelectContainer,
+.TextAreaContainer {
+  width: 100%;
+}
+
+.Select,
+.TextArea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.TextArea {
+  resize: vertical;
+  min-height: 120px;
+  /* TextArea-specific overrides */
+  flex-grow: 1;
+  display: block;
+}
+
+/* Checkbox group related styles */
+.CheckboxGroup {
+  margin-top: 8px;
+}
+
+.CheckboxTitle {
+  font-size: 14px;
+  margin-bottom: 12px;
+  color: #555;
+}
+
+.CheckboxOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.CheckboxLabel {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  cursor: pointer;
+  gap: 8px;
+}
+
+.CheckboxInput {
+  margin: 0;
+}
+
+/* Button wrapper and submit button */
+.ButtonWrapper {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+}
+
+.SubmitButton {
+  width: 100%;
+  max-width: 200px;
+  padding: 0.875rem;
+  /* unified padding from different sizes */
+}
+
+/* Form structure and layout */
+.FormContainer {
+  padding: 2.5rem 2rem 2rem;
+}
+
+.SocialLoginContainer {
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.SocialButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.ButtonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+/* Link and navigation styles */
+.LinkContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.LinkButton {
+  color: #333;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  padding: 0.25rem;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.LinkButton:hover,
+.LinkButton:focus-visible {
+  color: #000;
+  text-decoration: underline;
+  outline: none;
+}
+
+/* Accessibility & Performance */
+@media (prefers-reduced-motion: reduce) {
+  .Modal {
+    animation: none;
+  }
+
+  .CloseButton,
+  .LinkButton,
+  .SubmitButton {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+  .FormContainer {
+    padding: 1.75rem 1.5rem;
+  }
+
+  .FormTitle {
+    font-size: 1.25rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .LinkContainer {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .LinkDivider {
+    display: none;
+  }
+}

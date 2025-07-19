@@ -1,0 +1,131 @@
+.wrapper {
+  height: 140px;
+  /* Increased height for better spacing */
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  margin: 2rem 0;
+}
+
+/* Gradient fade effects */
+.wrapper::before,
+.wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100px;
+  /* Wider fade area */
+  z-index: 2;
+  pointer-events: none;
+}
+
+.wrapper::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.wrapper::after {
+  right: 0;
+  background: linear-gradient(270deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.slider {
+  display: flex;
+  height: 100%;
+  width: calc(180px * 20);
+  /* Adjusted for wider cards */
+  animation: slide 30s linear infinite;
+  align-items: center;
+  gap: 30px;
+  /* Increased gap between cards */
+  padding: 0 20px;
+  /* Added padding for better edge spacing */
+}
+
+.card {
+  flex: 0 0 160px;
+  /* Slightly wider cards */
+  height: 80px;
+  background-color: var(--charcoal);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Off-white border */
+  transition: all 0.3s ease;
+}
+
+.card span {
+  color: white;
+  font-weight: bold;
+  font-size: 1.3rem;
+  /* Slightly larger text */
+  text-align: center;
+  padding: 0 15px;
+  /* More padding inside cards */
+}
+
+.card:hover {
+  transform: scale(1.05);
+  border-color: rgba(245, 245, 245, 1);
+  /* Brighter border on hover */
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .wrapper {
+    height: 120px;
+  }
+
+  .slider {
+    gap: 20px;
+    padding: 0 15px;
+  }
+
+  .card {
+    flex: 0 0 140px;
+    height: 70px;
+  }
+
+  .card span {
+    font-size: 1.1rem;
+  }
+
+  .wrapper::before,
+  .wrapper::after {
+    width: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    height: 100px;
+  }
+
+  .slider {
+    gap: 15px;
+    padding: 0 10px;
+    animation-duration: 35s;
+  }
+
+  .card {
+    flex: 0 0 120px;
+    height: 60px;
+  }
+
+  .card span {
+    font-size: 1rem;
+  }
+}

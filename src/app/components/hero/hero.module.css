@@ -1,0 +1,384 @@
+.Hero {
+  display: grid;
+  grid-template-columns: minmax(280px, 320px) minmax(450px, 2fr) 220px;
+  /* Reduced video ads width */
+  gap: 2rem;
+  padding: 4.8rem 1rem;
+  justify-content: center;
+  align-items: start;
+  overflow: hidden;
+  background-color: var(--background);
+}
+
+/* MAIN CARD STYLES */
+.Card {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 12px;
+  background: var(--rich-black);
+  color: var(--off-white);
+  box-shadow: 0 1px 6px var(--verdigris);
+  height: 460px;
+  overflow: hidden;
+  position: relative;
+}
+
+.CardContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1rem;
+  position: relative;
+}
+
+/* Curtain animation styles */
+.Curtain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  background: var(--rich-black);
+  z-index: 2;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 1s ease;
+}
+
+.curtainClose {
+  transform: scaleX(1);
+  transform-origin: left;
+  opacity: 1;
+}
+
+.TopSection {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.BottomSection {
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+.AuthorSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.AuthorName {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--bone-white);
+}
+
+.DatePosted {
+  font-size: 0.95rem;
+  color: var(--bone-white-faded);
+}
+
+.ImageWrapper {
+  aspect-ratio: 16/10;
+  position: relative;
+  margin: 0 -1rem 1.25rem;
+  padding: 0 1rem;
+}
+
+.ImageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+}
+
+.Title {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0 0 1.25rem;
+  font-weight: 400;
+  color: var(--off-white);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 2.8em;
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+}
+
+.Divider {
+  height: 1px;
+  background: var(--charcoal);
+  margin: 0.75rem 0;
+}
+
+.Actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Actions button {
+  background: transparent;
+  border: none;
+  color: var(--off-white);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.34rem;
+  padding: 0.5rem 1rem;
+  opacity: 0.7;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.Actions span {
+  font-size: 1.1rem;
+}
+
+.Actions button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* SUMMARY CARD STYLES */
+.Summary {
+  width: 100%;
+  border-radius: 8px;
+  height: 460px;
+  background: var(--rich-black);
+  color: var(--off-white);
+  position: relative;
+}
+
+.SummaryContentContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+.SummaryTitle {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--off-white);
+  margin: 0 0 1.5rem;
+  line-height: 1.8;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-justify: inter-word;
+  hyphens: auto;
+  word-break: break-word;
+}
+
+.SummaryContent {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 1.8rem;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+}
+
+.SummaryContent {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 1.8rem;
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  max-height: 19.2em;
+  line-height: 2.8;
+}
+
+.SummaryContent p {
+  margin: 0;
+  line-height: 2.4;
+  text-justify: inter-word;
+  hyphens: auto;
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: static;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 8;
+  white-space: normal;
+  font-size: 1.1rem !important;
+  opacity: 0.9;
+}
+
+.SummaryFooter {
+  margin-top: auto;
+  padding-bottom: 0;
+}
+
+/* VIDEO ADS STYLES - Narrower version */
+.VideoAds {
+  width: 220px;
+  border-radius: 8px;
+  background: var(--rich-black);
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 460px;
+}
+
+.VideoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.VideoContainer video {
+  width: 100%;
+  height: 12rem;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* SKELETON LOADER STYLES */
+.Skeleton {
+  background-color: var(--charcoal);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.Skeleton::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.05),
+      transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.SkeletonText {
+  height: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.SkeletonAuthor {
+  width: 60%;
+  height: 1.1rem;
+}
+
+.SkeletonDate {
+  width: 40%;
+  height: 0.95rem;
+}
+
+.SkeletonImage {
+  width: 100%;
+  height: 200px;
+  margin: 0 -1rem 1.25rem;
+}
+
+.SkeletonTitle {
+  width: 90%;
+  height: 1.1rem;
+  margin-bottom: 1.25rem;
+}
+
+.SkeletonButton {
+  width: 80px;
+  height: 36px;
+  margin: 0 0.5rem;
+}
+
+.SkeletonSummaryTitle {
+  width: 80%;
+  height: 1.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.SkeletonLine {
+  width: 100%;
+  height: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.SkeletonLine:nth-child(odd) {
+  width: 95%;
+}
+
+.SkeletonLine:nth-child(even) {
+  width: 85%;
+}
+
+.SkeletonReadMore {
+  width: 120px;
+  height: 40px;
+  margin-top: auto;
+}
+
+/* RESPONSIVE STYLES */
+@media (max-width: 1200px) {
+  .Hero {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .VideoAds {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .Summary {
+    padding: 1.4rem;
+    border: .001rem solid var(--charcoal);
+  }
+
+  .VideoAds {
+    display: none;
+  }
+
+  .Hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 3rem 1.8rem;
+    gap: 1.5rem;
+  }
+
+  .Card,
+  .Summary {
+    width: 100%;
+    max-width: 100%;
+  }
+}

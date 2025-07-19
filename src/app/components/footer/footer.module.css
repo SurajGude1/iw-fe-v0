@@ -1,0 +1,238 @@
+.Container {
+  width: 100%;
+  background-color: #001000;
+  position: relative;
+  /* Remove original border styles */
+  border-top: none;
+  box-shadow: none;
+}
+
+/* Creates the tapered charcoal border (bottom layer) */
+.Container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  /* Max height */
+  background: linear-gradient(to right,
+      #36454F 0%,
+      #36454F 100%);
+  mask: linear-gradient(to right,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 1) 100%);
+  -webkit-mask: linear-gradient(to right,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 1) 100%);
+}
+
+/* Creates the tapered off-white border (top layer) */
+.Container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  /* Max height */
+  background: #F8F8F8;
+  mask: linear-gradient(to right,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 100%);
+  -webkit-mask: linear-gradient(to right,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 100%);
+  transform: translateY(-1px);
+}
+
+.LinksContainer {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1400px;
+  /* Increased to accommodate wider spacing */
+  margin: 0 auto;
+  padding: 3rem 0;
+  /* Vertical padding only */
+}
+
+/* About Section (wider) */
+.AboutSection {
+  flex: 0 0 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+/* Links Columns */
+.LinksColumn {
+  flex: 0 0 200px;
+}
+
+/* Subscribe Section */
+.SubscribeSection {
+  flex: 0 0 300px;
+  /* Fixed width */
+  padding: 0 20px 0 40px;
+  /* More left padding for gap */
+}
+
+/* Content Styles */
+.AboutText {
+  color: #edeade;
+  opacity: 0.9;
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  text-align: left;
+  margin-top: 1rem;
+}
+
+.SocialLinks {
+  display: flex;
+  gap: 1.2rem;
+  margin: 1.5rem 0;
+}
+
+.Icon {
+  font-size: 1.5rem;
+  color: #f9f6ee;
+  transition: all 0.2s ease;
+}
+
+.Icon:hover {
+  transform: translateY(-3px);
+  opacity: 0.8;
+}
+
+.ContactInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #f9f6ee;
+  font-size: 0.95rem;
+  margin-top: 1rem;
+}
+
+.SectionTitle {
+  color: #f9f6ee;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 1.2rem;
+}
+
+.LinkItem {
+  color: #f9f6ee;
+  opacity: 0.8;
+  font-size: 0.95rem;
+  text-decoration: none;
+  margin-bottom: 0.8rem;
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+.LinkItem:hover {
+  opacity: 1;
+}
+
+.SubscribeText {
+  color: #f9f6ee;
+  opacity: 0.9;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.SubscribeForm {
+  display: flex;
+  border-radius: 8px;
+  overflow: hidden;
+  border: none;
+  width: 100%;
+}
+
+.EmailInput {
+  flex: 1;
+  padding: 0.8rem;
+  background-color: var(--charcoal);
+  color: #f9f6ee;
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+}
+
+.EmailInput:focus {
+  background-color: #f9f6ee;
+  color: #001000;
+}
+
+.SubscribeButton {
+  background-color: #444;
+  color: #f9f6ee;
+  padding: 0 1.2rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.SubscribeButton:hover {
+  background-color: #666;
+}
+
+.Copyright {
+  /* margin-top: 3rem; */
+  padding-top: 1rem;
+  border-top: 1px solid #36454f;
+  color: #f9f6ee;
+  text-align: center;
+  font-size: 0.85rem;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .LinksContainer {
+    flex-wrap: wrap;
+    padding: 3rem 20px;
+  }
+
+  .AboutSection,
+  .LinksColumn,
+  .SubscribeSection {
+    flex: 1 1 300px;
+    padding: 0 15px;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .LinksContainer {
+    flex-direction: column;
+    padding: 2rem 20px;
+  }
+
+  .AboutSection,
+  .LinksColumn,
+  .SubscribeSection {
+    flex: 1 1 100%;
+    padding: 0;
+    /* margin-bottom: 2.5rem; */
+    align-items: center;
+    text-align: center;
+  }
+
+  .AboutText,
+  .SubscribeText,
+  .ContactInfo {
+    text-align: center;
+  }
+
+  .SubscribeSection {
+    padding-top: 1rem;
+    border-top: 1px solid #36454f;
+  }
+}

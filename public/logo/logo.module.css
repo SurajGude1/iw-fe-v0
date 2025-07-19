@@ -1,0 +1,54 @@
+/* Identical styling to original - just better organized */
+
+/* Base Styles */
+.Logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.Header {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  letter-spacing: 0.01rem;
+  background: #64e9ee;
+  background: linear-gradient(to right, #64e9ee 0%, #FAF9F6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+  margin: 0;
+  transform: scale(1.1, 0.95);
+  transform-origin: center center;
+}
+
+.SubHeader {
+  font-size: 0.5rem;
+  letter-spacing: 0.125rem;
+  word-spacing: 0.0625rem;
+  color: var(--bone-white);
+  margin: 0.25rem 0 0;
+  transition: all 0.3s ease;
+}
+
+.Header span {
+  color: var(--off-white);
+}
+
+/* Responsive Breakpoints (unchanged) */
+@media (max-width: 768px) {
+  .Header { font-size: 1.425rem; }
+  .SubHeader { font-size: 0.475rem; margin-top: 0.2375rem; }
+}
+
+@media (max-width: 480px) {
+  .Header { font-size: 1.35rem; }
+  .SubHeader { font-size: 0.45rem; }
+}
+
+@media (max-width: 360px) {
+  .Header { font-size: 1.275rem; }
+  .SubHeader { font-size: 0.425rem; letter-spacing: 0.1rem; }
+}

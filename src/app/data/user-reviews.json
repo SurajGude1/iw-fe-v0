@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "userImage": "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg",
+        "userName": "Michael Chen",
+        "reviewSummary": "This platform transformed my career. The resources are practical and immediately applicable."
+    },
+    {
+        "id": 2,
+        "userImage": "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
+        "userName": "Sarah Johnson",
+        "reviewSummary": "As a busy professional, I appreciate how concise yet comprehensive the content is."
+    },
+    {
+        "id": 3,
+        "userImage": "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+        "userName": "David Wilson",
+        "reviewSummary": "The community support is unparalleled. Truly exceptional service and response times."
+    },
+    {
+        "id": 4,
+        "userImage": "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg",
+        "userName": "Emily Rodriguez",
+        "reviewSummary": "Best investment I've made in my professional development. Worth every penny."
+    },
+    {
+        "id": 5,
+        "userImage": "https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg",
+        "userName": "James Miller",
+        "reviewSummary": "The interface is so intuitive that I was able to dive right in without any tutorial."
+    },
+    {
+        "id": 6,
+        "userImage": "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg",
+        "userName": "Olivia Smith",
+        "reviewSummary": "The real-world case studies bridge the gap between theory and practice perfectly."
+    },
+    {
+        "id": 7,
+        "userImage": "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg",
+        "userName": "Robert Taylor",
+        "reviewSummary": "I've tried many platforms, but none match the depth of content here."
+    },
+    {
+        "id": 8,
+        "userImage": "https://images.pexels.com/photos/712521/pexels-photo-712521.jpeg",
+        "userName": "Sophia Brown",
+        "reviewSummary": "The mobile experience is flawless. I can learn on the go without compromise."
+    },
+    {
+        "id": 9,
+        "userImage": "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg",
+        "userName": "Daniel Kim",
+        "reviewSummary": "Excellent content quality with practical examples that are immediately useful."
+    },
+    {
+        "id": 10,
+        "userImage": "https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg",
+        "userName": "Emma Davis",
+        "reviewSummary": "The instructors are knowledgeable and make complex topics easy to understand."
+    }
+]

@@ -1,0 +1,277 @@
+.PostersWrapper {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    background-color: var(--background-color);
+    position: relative;
+}
+
+.SectionTitle {
+    color: var(--off-white);
+    margin-bottom: .5rem;
+    text-align: left;
+    font-weight: 300;
+    font-size: 1.2rem;
+    display: inline-block;
+    transform: scaleX(1.4);
+    transform-origin: left;
+    font-family: sans-serif;
+}
+
+.CarouselContainer {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.Carousel {
+    width: 100%;
+    display: flex;
+    gap: 1.8rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.Carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.NavButton {
+    position: absolute;
+    background: none;
+    border: none;
+    color: var(--off-white);
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+    opacity: 0.8;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.NavButton:hover {
+    opacity: 1;
+}
+
+.LeftButton {
+    left: 0;
+}
+
+.RightButton {
+    right: 0;
+}
+
+.Poster {
+    --poster-width: 10rem;
+    --poster-height: 12rem;
+
+    width: var(--poster-width);
+    height: var(--poster-height);
+    min-width: var(--poster-width);
+    min-height: var(--poster-height);
+    position: relative;
+    perspective: 1000px;
+    cursor: pointer;
+    box-shadow: 0 1px 12px var(--charcoal);
+    transition: all 0.3s ease;
+    border-radius: 1px;
+    flex-shrink: 0;
+}
+
+.PosterContent {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+    overflow: hidden;
+    border-radius: 1px;
+}
+
+.Poster:hover {
+    border: 0.2rem solid var(--off-white);
+}
+
+.PosterImage {
+    object-fit: cover;
+    transition: filter 0.3s ease;
+}
+
+.Poster:hover .PosterImage {
+    filter: blur(3px) brightness(0.7);
+}
+
+.PosterText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 1rem;
+    text-align: center;
+    width: 100%;
+    padding: 0 0.5rem;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+}
+
+.Poster:hover .PosterText,
+.Poster:hover {
+    opacity: 1;
+}
+
+.ForwardArrow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    color: var(--rich-black);
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 3;
+}
+
+.ForwardArrow:hover {
+    background: var(--charcoal);
+    color: white;
+}
+
+/* Skeleton Loader Styles */
+.Skeleton {
+    background-color: var(--charcoal);
+    position: relative;
+    overflow: hidden;
+    border-radius: 1px;
+}
+
+.Skeleton::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.05),
+            transparent);
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.SkeletonImage {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.SkeletonText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 1.2rem;
+    z-index: 2;
+}
+
+.SkeletonArrow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    z-index: 3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .Poster {
+        --poster-width: 9rem;
+        --poster-height: 10.8rem;
+    }
+
+    .NavButton {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .Poster {
+        --poster-width: 8rem;
+        --poster-height: 9.6rem;
+    }
+
+    .Poster:hover {
+        border: 0.2rem solid var(--off-white);
+    }
+
+    .PostersTitle {
+        color: var(--off-white);
+        font-size: 1.5rem;
+    }
+
+    .NavButton {
+        font-size: 1.6rem;
+    }
+
+    .ForwardArrow {
+        width: 2.2rem;
+        height: 2.2rem;
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .Poster {
+        --poster-width: 7rem;
+        --poster-height: 8.4rem;
+    }
+
+    .PosterText {
+        font-size: 0.8rem;
+    }
+
+    .Poster:hover {
+        border: 0.2rem solid var(--off-white);
+    }
+
+    .Carousel {
+        gap: 1.4rem;
+    }
+
+    .NavButton {
+        font-size: 1.4rem;
+    }
+
+    .ForwardArrow {
+        width: 1.8rem;
+        height: 1.8rem;
+        font-size: 1rem;
+    }
+}

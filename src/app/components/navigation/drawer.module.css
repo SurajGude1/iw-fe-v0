@@ -1,0 +1,127 @@
+/* Drawer Container */
+.Drawer {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 90%;
+  height: 100vh;
+  background-color: #0c111b;
+  color: white;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 1000;
+  transition: right 0.3s ease-in-out;
+  overflow-y: auto;
+}
+
+.Drawer.open {
+  right: 0;
+}
+
+/* Blurred Overlay */
+.DrawerOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.DrawerOverlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Header with Close Button */
+.DrawerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--charcoal);
+}
+
+.DrawerHeader .UserName {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--off-white);
+}
+
+.DrawerCloseButton {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.DrawerCloseButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Content Area */
+.DrawerContent {
+  padding: 20px;
+  height: calc(100vh - 85px);
+  overflow-y: auto;
+}
+
+/* Navigation Items */
+.DrawerNav {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.DrawerItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: white;
+  text-decoration: none;
+  padding: 12px 15px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.DrawerItem:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.DrawerItem svg {
+  width: 20px;
+}
+
+.Span {
+  color: var(--off-white);
+}
+
+/* Mobile Styles */
+@media only screen and (max-width: 450px) {
+  .Drawer {
+    width: 55%;
+  }
+
+  .DrawerHeader {
+    height: 60px;
+    padding: 0 15px;
+  }
+}
+
+/* Blur Fallback */
+@supports not (backdrop-filter: blur(10px)) {
+  .DrawerOverlay {
+    background-color: rgba(0, 0, 0, 0.85);
+  }
+}

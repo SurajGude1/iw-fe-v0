@@ -1,0 +1,442 @@
+.SocialCardsContainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 1.4rem;
+    margin-top: 1.8rem;
+    background: var(--rich-black);
+    color: var(--off-white);
+    flex-wrap: wrap;
+}
+
+.SocialCardsMain {
+    flex: 0 0 70%;
+}
+
+.SectionTitle {
+    color: var(--off-white);
+    margin-bottom: 1.8rem;
+    margin-top: .5rem;
+    text-align: left;
+    font-weight: 300;
+    font-size: 1.2rem;
+    display: inline-block;
+    transform: scaleX(1.4);
+    transform-origin: left;
+    font-family: sans-serif;
+}
+
+.SocialCardsSidebar {
+    flex: 0 0 20%;
+    background: var(--rich-black);
+    padding: 1.5rem;
+    border-radius: 8px;
+    height: fit-content;
+    border: 1px solid var(--charcoal);
+}
+
+/* Search + Dropdown */
+.SocialCardsSearchContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 0.8rem;
+    padding-bottom: 1.4rem;
+    flex-wrap: nowrap;
+    position: relative;
+}
+
+.SocialCardsSearchContainer::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 0.3px;
+    width: 100%;
+    background-color: var(--charcoal);
+    opacity: 0.8;
+}
+
+.YoutubeIcon {
+    color: #FF0000;
+    font-size: 1.2rem;
+    margin: 0 0.3rem;
+    vertical-align: middle;
+}
+
+/* YouTube Channels Grid */
+.YouTubeChannelsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+    margin-top: 1rem;
+}
+
+.YouTubeChannelBox {
+    background: var(--charcoal);
+    color: var(--off-white);
+    padding: 0.5rem 0.3rem;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.YouTubeChannelBox:hover {
+    background: var(--charcoal-light);
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments - Horizontal Scroller */
+@media (max-width: 768px) {
+    .YouTubeChannelsGrid {
+        display: flex;
+        grid-template-columns: unset;
+        overflow-x: auto;
+        gap: 0.8rem;
+        padding-bottom: 0.8rem;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .YouTubeChannelBox {
+        flex: 0 0 auto;
+        width: 120px;
+        height: 32px;
+        font-size: 0.8rem;
+        scroll-snap-align: start;
+    }
+
+    .YouTubeChannelsGrid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .YouTubeChannelsGrid {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
+
+.SearchInputWrapper {
+    flex: 2;
+    min-width: 150px;
+}
+
+.DropdownWrapper {
+    flex: 1;
+    min-width: 150px;
+}
+
+/* Grid */
+.SocialCardsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.7rem;
+    margin-top: 2.4rem;
+    margin-bottom: 2rem;
+}
+
+.SocialCard {
+    display: flex;
+    border: 0.05rem solid #C0C0C04D;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 120px;
+    transition: 1s;
+}
+
+.SocialCard:hover {
+    transition: 1s;
+    border: 0.01rem solid var(--bone-white);
+}
+
+.SocialCardImageContainer {
+    flex: 0 0 120px;
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+}
+
+.SocialCardContent {
+    flex: 1;
+    padding: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.SocialCardTitle {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    margin-right: .5rem;
+    font-weight: 400;
+    line-height: 1.6;
+    text-align: left;
+    hyphens: auto;
+    letter-spacing: 0.0211rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0.9;
+}
+
+.SocialCardFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.SocialCardKnowMore {
+    color: var(--light-grey);
+    text-decoration: none;
+    font-size: 0.7rem;
+    border-bottom: 1px solid var(--light-grey);
+    padding-bottom: 1px;
+}
+
+.SocialCardViews {
+    font-size: 0.7rem;
+    opacity: 0.8;
+}
+
+.SocialCardViews .FaEye {
+    padding-right: 0.2rem;
+}
+
+.RecordingIcon {
+    position: relative;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-color: red;
+    border-radius: 50%;
+    margin-right: 8px;
+    box-shadow: 0 0 0 rgba(255, 0, 0, 0.7);
+    animation: pulse-ring 1.5s infinite;
+}
+
+@keyframes pulse-ring {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 0, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+    }
+}
+
+.SocialCardsSidebarHeader {
+    margin-bottom: 1.2rem;
+    text-align: left;
+}
+
+.SocialCardsChannelBox {
+    background: var(--charcoal);
+    padding: 0.8rem;
+    margin-bottom: 1.8rem;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.SocialCardsPagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .SocialCardsContainer {
+        flex-direction: column;
+    }
+    .SocialCardsMain,
+    .SocialCardsSidebar {
+        flex: 1 1 100%;
+        width: 100%;
+    }
+    .SocialCardsSidebar {
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .SocialCardsGrid {
+        grid-template-columns: 1fr;
+    }
+    .SocialCard {
+        height: 100px;
+    }
+    .SocialCardsSearchContainer {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+/* Skeleton Loading Styles */
+@keyframes shimmer {
+    0% { background-position: -468px 0 }
+    100% { background-position: 468px 0 }
+}
+
+.SocialCardSkeleton {
+    display: flex;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 120px;
+    background: var(--charcoal);
+}
+
+.SkeletonImage {
+    flex: 0 0 120px;
+    height: 120px;
+    background: linear-gradient(to right, var(--charcoal) 8%, var(--charcoal-light) 18%, var(--charcoal) 33%);
+    background-size: 800px 104px;
+    animation: shimmer 1.5s infinite linear;
+}
+
+.SkeletonContent {
+    flex: 1;
+    padding: 0.8rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.SkeletonTitle {
+    height: 20px;
+    width: 80%;
+    margin-bottom: 12px;
+    background: linear-gradient(to right, var(--charcoal) 8%, var(--charcoal-light) 18%, var(--charcoal) 33%);
+    background-size: 800px 104px;
+    animation: shimmer 1.5s infinite linear;
+    border-radius: 4px;
+}
+
+.SkeletonFooter {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.SkeletonViews {
+    height: 14px;
+    width: 50px;
+    background: linear-gradient(to right, var(--charcoal) 8%, var(--charcoal-light) 18%, var(--charcoal) 33%);
+    background-size: 800px 104px;
+    animation: shimmer 1.5s infinite linear;
+    border-radius: 4px;
+}
+
+.SkeletonButton {
+    height: 14px;
+    width: 60px;
+    background: linear-gradient(to right, var(--charcoal) 8%, var(--charcoal-light) 18%, var(--charcoal) 33%);
+    background-size: 800px 104px;
+    animation: shimmer 1.5s infinite linear;
+    border-radius: 4px;
+}
+
+.SidebarSkeleton {
+    flex: 0 0 20%;
+    background: var(--rich-black);
+    padding: 1.5rem;
+    border-radius: 8px;
+    height: fit-content;
+    border: 1px solid var(--charcoal);
+}
+
+.SkeletonHeader {
+    height: 20px;
+    width: 70%;
+    margin-bottom: 1.2rem;
+    background: linear-gradient(to right, var(--charcoal) 8%, var(--charcoal-light) 18%, var(--charcoal) 33%);
+    background-size: 800px 104px;
+    animation: shimmer 1.5s infinite linear;
+    border-radius: 4px;
+}
+
+.SkeletonChannelBox {
+    height: 40px;
+    width: 100%;
+    margin-bottom: 1.8rem;
+    background: linear-gradient(to right, var(--charcoal) 8%, var(--charcoal-light) 18%, var(--charcoal) 33%);
+    background-size: 800px 104px;
+    animation: shimmer 1.5s infinite linear;
+    border-radius: 4px;
+}
+
+.SkeletonSubheader {
+    height: 18px;
+    width: 60%;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, var(--charcoal) 8%, var(--charcoal-light) 18%, var(--charcoal) 33%);
+    background-size: 800px 104px;
+    animation: shimmer 1.5s infinite linear;
+    border-radius: 4px;
+}
+
+.SkeletonChannelsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+    margin-top: 1rem;
+}
+
+.SkeletonChannel {
+    height: 32px;
+    background: linear-gradient(to right, var(--charcoal) 8%, var(--charcoal-light) 18%, var(--charcoal) 33%);
+    background-size: 800px 104px;
+    animation: shimmer 1.5s infinite linear;
+    border-radius: 4px;
+}
+
+.SearchSkeleton {
+    display: flex;
+    flex-direction: row;
+    gap: 0.8rem;
+    padding-bottom: 1.4rem;
+    flex-wrap: nowrap;
+    position: relative;
+}
+
+.SkeletonSearchInput {
+    flex: 2;
+    min-width: 150px;
+    height: 40px;
+    background: linear-gradient(to right, var(--charcoal) 8%, var(--charcoal-light) 18%, var(--charcoal) 33%);
+    background-size: 800px 104px;
+    animation: shimmer 1.5s infinite linear;
+    border-radius: 4px;
+}
+
+.SkeletonDropdown {
+    flex: 1;
+    min-width: 150px;
+    height: 40px;
+    background: linear-gradient(to right, var(--charcoal) 8%, var(--charcoal-light) 18%, var(--charcoal) 33%);
+    background-size: 800px 104px;
+    animation: shimmer 1.5s infinite linear;
+    border-radius: 4px;
+}
+
+.SkeletonSectionTitle {
+    height: 24px;
+    width: 150px;
+    margin-bottom: 1.8rem;
+    background: linear-gradient(to right, var(--charcoal) 8%, var(--charcoal-light) 18%, var(--charcoal) 33%);
+    background-size: 800px 104px;
+    animation: shimmer 1.5s infinite linear;
+    border-radius: 4px;
+}

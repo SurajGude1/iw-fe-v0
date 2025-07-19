@@ -1,0 +1,9 @@
+
+/* Profile image style */
+.ProfileImg {
+  width: 20%;
+  height: 20%;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}

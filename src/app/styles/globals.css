@@ -1,0 +1,857 @@
+/* CSS Variables */
+:root {
+  /* Font Families */
+  --font-sour-gummy: "Sour Gummy", cursive;
+  --font-verdana: Verdana, Geneva, Tahoma, sans-serif;
+
+  /* Font Weights */
+  --font-weight-xs: 200;
+  --font-weight-m: 400;
+  --font-weight-xl: 200;
+
+  /* Color palette */
+  --light-grey: #e3e3e3;
+  --rich-black: #001011;
+  --midnight-green: #093a3e;
+  --verdigris: #3aafb9;
+  --electric-blue: #64e9ee;
+  --light-sky-blue: #97c8eb;
+  --bone-white: #f9f6ee;
+  --alabaster: #edeade;
+  --off-white: #faf9f6;
+  --pearl: #e2dfd2;
+  --coke-red: #f40009;
+  --lime-green: #00ff00;
+  --charcoal: #36454f;
+  --gold: #ffd700;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+
+  /* Typography */
+  --text-base: 1rem;
+  --text-sm: 0.875rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+}
+
+/* Define the custom font */
+@font-face {
+  font-family: 'FrozitoFont';
+  src: url('/fonts/frozito-font/Frozito-eZ99g.ttf') format('truetype');
+  font-weight: 200; /* Changed from -800 to 200 */
+  font-style: normal;
+  font-display: swap; /* Ensures text remains visible during font load */
+}
+
+/* Base Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  font-family: var(--font-verdana);
+  color: var(--color-text);
+  background-color: var(--light-grey);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* Disable blue highlight on button click */
+button {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+
+/* Google Fonts */
+.FontSourGummy {
+  font-family: "Sour Gummy", sans-serif;
+}
+
+/* Common Hovers */
+.BgSkyBlueHover:hover {
+  background-color: var(--light-sky-blue);
+}
+
+.BgCharcoalHover:hover {
+  background-color: var(--light-sky-blue);
+}
+
+.BgGoldPrimary {
+  background-color: var(--gold);
+}
+
+.CursorPointer {
+  cursor: pointer;
+}
+
+.OverFlowHidden {
+  overflow: hidden;
+}
+
+.OverflowAuto {
+  overflow: auto;
+}
+
+.OverflowYAuto {
+  overflow-y: auto;
+}
+
+.OverflowXAuto {
+  overflow-x: auto;
+}
+
+.ShadowPrimary {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.ShadowSecondary {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+.ShadowTernary {
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+.ShadowN {
+  box-shadow: none;
+}
+
+.PositionFixed {
+  position: fixed;
+}
+
+.PositionRelative {
+  position: relative;
+}
+
+.PositionAbsolute {
+  position: absolute;
+}
+
+.Transition02 {
+  transition: 0.2s;
+}
+
+.TransformTranslateX0 {
+  transform: translateX(0);
+}
+
+.TransformTranslateX-100 {
+  transform: translateX(-100%);
+}
+
+.TransformTranslateY-100 {
+  transform: translateY(-100%);
+}
+
+.TransitionOpacity03 {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.Opacity08 {
+  opacity: 0.8;
+}
+
+.ZIndex1000 {
+  z-index: 1000;
+}
+
+.Top0 {
+  top: 0;
+}
+
+.Left0 {
+  left: 0;
+}
+
+.Right0 {
+  right: 0;
+}
+
+.Bottom0 {
+  bottom: 0;
+}
+
+.Left_50 {
+  left: 50%;
+}
+
+/* Common Properties */
+
+/* Fonts Measures and Styles */
+.LetterSpacing2 {
+  letter-spacing: 2px;
+}
+
+.WordSpacing1 {
+  word-spacing: 1px;
+}
+
+.FontI {
+  font-style: italic;
+}
+
+.Font8 {
+  font-size: 8px;
+}
+
+.Font12 {
+  font-size: 12px;
+}
+
+.Font16 {
+  font-size: 16px;
+}
+
+.Font18 {
+  font-size: 18px;
+}
+
+.Font22 {
+  font-size: 22px;
+}
+
+.Font24 {
+  font-size: 24px;
+}
+
+.Font42 {
+  font-size: 42px;
+}
+
+.Font64 {
+  font-size: 64px;
+}
+
+.Font400 {
+  font-weight: 400;
+}
+
+/* Fonts Measures and Styles */
+
+/* Text Colors and Style */
+.ErrorText {
+  color: var(--coke-red);
+}
+
+.SuccessText {
+  color: var(--lime-green);
+}
+
+.RedText {
+  color: var(--coke-red);
+  cursor: pointer;
+}
+
+.GreenText {
+  color: var(--lime-green);
+  cursor: pointer;
+}
+
+.CharcoalText {
+  color: var(--charcoal);
+}
+
+.BoneWhite {
+  color: var(--bone-white);
+}
+
+.OffWhite {
+  color: var(--off-white);
+}
+
+.ElectricBlue {
+  color: var(--electric-blue);
+}
+
+.RichBlack {
+  color: var(--rich-black);
+}
+
+.TextBold {
+  font-weight: bold;
+}
+
+.Text400 {
+  font-weight: 400;
+}
+
+.TextColorCharcoal {
+  color: var(--charcoal);
+}
+
+.DecorationN {
+  text-decoration: none;
+}
+
+.TextAlignCenter {
+  text-align: center;
+}
+
+.DecorationUlGeneral {
+  text-underline-offset: 4px;
+}
+
+.DecorationUnderline {
+  text-decoration: underline;
+}
+
+.DecorationColorCharcoal {
+  text-decoration-color: var(--charcoal);
+}
+
+.DecorationColorOffWhite {
+  text-decoration-color: var(--off-white);
+}
+
+.DecorationThickness {
+  text-decoration-thickness: 1px;
+}
+
+.DecorationOffSet {
+  text-underline-offset: 10px;
+}
+
+.DecorationUlBone {
+  text-decoration-thickness: 1px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  color: var(--light-sky-blue);
+  text-decoration-color: var(--bone-white);
+}
+
+.DecorationUlOffWhite:hover {
+  text-decoration-thickness: 1px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  color: var(--off-white);
+  text-decoration-color: var(--off-white);
+}
+
+.DecorationUlCharcoal:hover {
+  text-decoration-thickness: 1px;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  /* color: var(--charcoal); */
+  text-decoration-color: var(--charcoal);
+}
+
+.DecorationUlCharcoal {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-color: #36454f;
+  text-decoration-thickness: 1px;
+}
+
+.LineHeight25 {
+  line-height: 25px;
+}
+
+/* Text Colors and Style */
+
+/* FontAwasome */
+.Icon:hover {
+  color: #0077b5;
+  transform: scale(1);
+}
+
+/* FontAwasome */
+
+/* Background colors */
+.BgRichBlack {
+  background-color: var(--rich-black);
+}
+
+.BgCharCoal {
+  background-color: var(--charcoal);
+}
+
+.BgVerdigris {
+  background-color: var(--verdigris);
+}
+
+.BgWhiteBone {
+  background-color: var(--bone-white);
+}
+
+.BgOffWhite {
+  background-color: var(--off-white);
+}
+
+.BgPearl {
+  background-color: var(--pearl);
+}
+
+.BgSkyBlue {
+  background-color: var(--light-sky-blue);
+}
+
+.BgCokeRed {
+  background-color: var(--coke-red);
+}
+
+.BgTransparent {
+  background-color: transparent;
+}
+
+.BackgroundN {
+  background: none;
+}
+
+.BgLinearGrad {
+  background: linear-gradient(135deg, var(--midnight-green), var(--verdigris));
+}
+
+/* Background colors */
+
+/* Heading and Subheading */
+.Header {
+  color: var(--rich-black);
+}
+
+.SubHeader {
+  color: var(--rich-black);
+}
+
+/* Heading and Subheading */
+
+/* Border and Styles */
+.BorderCharCoal {
+  border: 1px solid var(--charcoal);
+}
+
+.BorderBoneWhite {
+  border: 1px solid var(--bone-white);
+}
+
+.BorderCokeRed {
+  border: 3px solid var(--coke-red);
+}
+
+.OutlineN {
+  outline: none;
+}
+
+.BorderN {
+  border: none;
+}
+
+.BorderLeft4 {
+  border-left: 4px solid #fff;
+}
+
+.BorderRadius25 {
+  border-radius: 25px;
+}
+
+.BorderRadius4 {
+  border-radius: 4px;
+}
+
+.BorderRadius20 {
+  border-radius: 20px;
+}
+
+.BorderRadius50 {
+  border-radius: 50%;
+}
+
+.BorderLeft {
+  border-left: 4px solid var(--off-white);
+}
+
+/* Border and Styles */
+
+/* Buttons */
+.CancelButton {
+  background-color: var(--coke-red);
+  color: var(--bone-white);
+}
+
+.Button {
+  border: none;
+  background-color: var(--verdigris);
+  color: var(--bone-white);
+  transition: 0.2s;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.Button:hover {
+  background-color: var(--light-sky-blue);
+  color: var(--charcoals);
+  transition: 0.2s;
+}
+
+.ButtonW80H6 {
+  width: 80%;
+  height: 6.5%;
+  background-color: var(--off-white);
+}
+
+.ButtonW80H6:hover {
+  transition: 0.2s;
+  color: var(--bone-white);
+  background-color: var(--light-sky-blue);
+}
+
+/* Buttons */
+
+/* Form */
+.Form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Form Inputs */
+.FormGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.InputField:focus {
+  outline: none;
+  border-color: var(--electric-blue);
+}
+
+/* Form Inputs */
+/* Form */
+
+/* Containers/Boxes */
+.AutoWH {
+  width: auto;
+  height: auto;
+}
+
+.BoxH_100 {
+  height: 100%;
+}
+
+.BoxW_50 {
+  width: 50%;
+}
+
+.BoxW_100 {
+  width: 100%;
+}
+
+.BoxW700H500 {
+  width: 700px;
+  height: 500px;
+}
+
+.BoxW96Hauto {
+  width: 96%;
+  height: auto;
+}
+
+.BoxW82H100 {
+  width: 82%;
+  height: 100%;
+}
+
+.BoxW20H100 {
+  width: 20%;
+  height: 100%;
+}
+
+.Box400w {
+  width: 400px;
+}
+
+.Box165w {
+  width: 165px;
+}
+
+.Box600h {
+  height: 600px;
+}
+
+.Box100w {
+  width: 100%;
+}
+
+.Box_15w {
+  width: 15%;
+}
+
+.Box_60w {
+  width: 60%;
+}
+
+.Box100h {
+  height: 100%;
+}
+
+.Box100wh {
+  width: 100%;
+  height: 100%;
+}
+
+.FlexBoxRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.FlexBoxColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.JustifyCenter {
+  justify-content: center;
+}
+
+.JustifyStart {
+  justify-content: flex-start;
+}
+
+.justifySpaceBetween {
+  justify-content: space-between;
+}
+
+.justifySpaceEvenly {
+  justify-content: space-evenly;
+}
+
+.AlignItemsCenter {
+  align-items: center;
+}
+
+.AlignContentCenter {
+  align-content: center;
+}
+
+.GridCol2x {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* Max 2 cards per row */
+}
+
+.JustifyFlexEnd {
+  justify-content: flex-end;
+}
+
+.FlexGrow1 {
+  flex-grow: 1;
+}
+
+/* Containers/Boxes */
+
+/* Pop and Overlay */
+.PopUp {
+  padding: 20px;
+  background-color: var(--alabaster);
+}
+
+.PopUpOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* Pop and Overlay */
+
+/* Height and Width */
+.Height100vh {
+  height: 100vh;
+}
+
+.MinHeight250 {
+  min-height: 250px;
+}
+
+.MaxHeight250 {
+  max-height: 350px;
+}
+
+.MinHeight90 {
+  max-height: 90vh;
+}
+
+.Width400 {
+  width: 400px;
+}
+
+/* Height and Width */
+
+/* Margin and Padding */
+
+.Padding7 {
+  padding: 7px;
+}
+
+.Padding9 {
+  padding: 9px;
+}
+
+.Padding1020 {
+  padding: 10px 20px;
+}
+
+.Padding10 {
+  padding: 10px;
+}
+
+.Padding15 {
+  padding: 15px;
+}
+
+.Padding20 {
+  padding: 20px;
+}
+
+.Padding30 {
+  padding: 30px;
+}
+
+.Padding40 {
+  padding: 40px;
+}
+
+.PaddingLeft10 {
+  padding-left: 10px;
+}
+
+.Margin80Auto {
+  margin: 80px auto;
+}
+
+/* Margin and Padding */
+
+/* Gap */
+.Gap10 {
+  gap: 10px;
+}
+
+.Gap15 {
+  gap: 15px;
+}
+
+.Gap20 {
+  gap: 10px;
+}
+
+.Gap25 {
+  gap: 25px;
+}
+
+.Gap30 {
+  gap: 30px;
+}
+
+.Gap35 {
+  gap: 30px;
+}
+
+/* Gap */
+
+/* Animations */
+.AnimationFadeIn {
+  animation: FadeIn 2s ease-in-out;
+}
+
+.AnimationSideIn {
+  animation: SlideIn 1.5s ease-out;
+}
+
+.AnimationBounce {
+  animation: Bounce 1.5s infinite;
+}
+
+.EaseInOut {
+  transition: transform 0.4s ease-in-out;
+}
+
+/* Animations */
+
+/* Table */
+/* Table Styles */
+.MainTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.MainTable th,
+.MainTable td {
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.MainTable thead {
+  background-color: #97c8eb;
+}
+
+.MainTable th {
+  font-weight: 600;
+  color: #36454f;
+}
+
+.MainTable .Actions {
+  display: flex;
+  gap: 10px;
+}
+
+.Actions .ActionsLinks {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 5px;
+  transition: 0.2s;
+}
+
+.DeleteLink {
+  background-color: #e74c3c;
+  /* Red for delete */
+}
+
+.UpdateLink {
+  background-color: #3aafb9;
+  /* Blue for update */
+}
+
+.ActionsLinks:hover {
+  background-color: #97c8eb;
+  color: #001011;
+  transition: 0.2s;
+  opacity: 0.8;
+}
+
+/* Table */
+/* Global Classes Ends */

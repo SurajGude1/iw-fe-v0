@@ -1,0 +1,104 @@
+.UserReviewsSection {
+    padding: 3rem 1rem;
+    overflow: hidden;
+}
+
+.SectionTitle {
+    color: var(--off-white);
+    margin-bottom: 1.8rem;
+    text-align: left;
+    font-weight: 300;
+    font-size: 1.2rem;
+    display: inline-block;
+    transform: scaleX(1.4);
+    transform-origin: left;
+    font-family: sans-serif;
+}
+
+.CarouselWrapper {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.CarouselTrack {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+    backface-visibility: hidden;
+    contain: layout paint;
+}
+
+.Animate .CarouselTrack {
+    animation: ScrollLeft 60s linear infinite;
+}
+
+.Pause .CarouselTrack {
+    animation: none;
+}
+
+.CarouselWrapper:hover .CarouselTrack {
+    animation-play-state: paused;
+}
+
+@keyframes ScrollLeft {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.ReviewCard {
+    flex: 0 0 auto;
+    width: 250px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 1.2rem;
+    margin: 0 1rem;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+.ReviewCard:hover {
+    transform: scale(1.05);
+}
+
+.UserImage {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 0.8rem;
+    border: 2px solid #ddd;
+}
+
+.UserName {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #222;
+}
+
+.ReviewSummary {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    .ReviewCard {
+        width: 200px;
+        padding: 1rem;
+        margin: 0 0.5rem;
+    }
+
+    .ReviewSummary {
+        font-size: 0.85rem;
+    }
+}

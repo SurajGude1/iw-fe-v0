@@ -1,0 +1,126 @@
+/* Modal Overlay */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Modal Container */
+.modalContainer {
+  background-color: white;
+  color: #333;
+  width: 100%;
+  max-height: 85vh;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateY(100%);
+  animation: slideUp 0.4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* Modal Header */
+.modalHeader {
+  padding: 1.5rem;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1;
+}
+
+.modalHeader h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Close Button */
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  cursor: pointer;
+  color: #666;
+  padding: 0 0.5rem;
+}
+
+/* Modal Content */
+.modalContent {
+  padding: 1.5rem;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.modalContent h3 {
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.modalContent p, .modalContent ul {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.modalContent a {
+  color: #0066cc;
+  text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* Desktop Styles */
+@media (min-width: 768px) {
+  .modalOverlay {
+    align-items: center;
+  }
+
+  .modalContainer {
+    width: 90%;
+    max-width: 800px;
+    max-height: 70vh;
+    border-radius: 16px;
+    transform: translateY(20px);
+    animation: fadeInUp 0.4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  }
+
+  @keyframes fadeInUp {
+    from { 
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Prevent scrolling when modal is open */
+body.modal-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
