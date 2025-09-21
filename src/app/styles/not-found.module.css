@@ -1,51 +1,49 @@
 .NotFound {
+  --not-found-padding: 2.8rem;
+  --not-found-padding-mobile: 1.5rem;
+
   background-color: var(--rich-black);
-  height: 100vh;
+  min-height: 100dvh; /* Use dvh for dynamic viewport height */
   width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   margin: 0;
   padding: 0;
 }
 
 .Content {
-  padding: 2.8rem;
-  border-radius: .8rem;
+  padding: var(--not-found-padding);
+  border-radius: 0.8rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--charcoal);
+  transition: all 0.3s ease;
 }
 
 .PageTitle {
   color: var(--off-white);
-  font-size: 2.5rem;
+  font-size: clamp(1.4rem, 4vw, 2.5rem); /* Responsive font size */
   font-weight: 300;
   letter-spacing: 0.05em;
   text-align: center;
-  margin: 0;
-  padding: 0;
-  margin-top: 1.4rem;
-  margin-bottom: 1.4rem;
+  margin: 1.4rem 0;
   text-decoration: line-through;
   text-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .NotFound {
     padding: 1rem;
   }
 
   .Content {
-    padding: 1.5rem;
-    width: 90%;
+    padding: var(--not-found-padding-mobile);
+    width: min(90%, 400px);
   }
 
   .PageTitle {
-    font-size: 1.4rem;
     letter-spacing: 0.03em;
   }
 }

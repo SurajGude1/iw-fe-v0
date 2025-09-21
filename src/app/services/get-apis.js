@@ -6,7 +6,7 @@ const API_BASE_URL = GOLANG_API_BASE_URL;
 
 const api = axios.create({
   baseURL: API_BASE_URL, // Corrected property name
-  timeout: 45000,
+  timeout: 30000,
 });
 
 export const fetchPosts = async () => {

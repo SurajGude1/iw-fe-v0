@@ -1,49 +1,40 @@
-"use client"; //  Enables client-side rendering for interactivity and animations
+"use client";
 
-//  Scoped CSS module for layout styling
 import styles from "./styles/page.module.css";
+import dynamic from 'next/dynamic';
 
-//  Top-level reusable UI components
-import TopNavigationBar from "./components/navigation/top-navigation-bar";
-import Hero from "./components/hero/hero";
-import Posters from "./components/posters/posters";
-import FiltersCardsChannels from "./components/filters-cards-channels/filters-cards-channels";
-import UserReviews from "./components/user-reviews/user-reviews";
-import SiteMetadata from "./components/site-metadata/site-metadata";
-import Collaborators from "./components/collaborators/collaborators";
-import Footer from "./components/footer/footer";
+// Lazy load heavy components
+const TopNavigationBar = dynamic(() => import("./components/navigation/top-navigation-bar"));
+const Hero = dynamic(() => import("./components/hero/hero"));
+const Posters = dynamic(() => import("./components/posters/posters"));
+const FiltersCardsChannels = dynamic(() => import("./components/filters-cards-channels/filters-cards-channels"));
+const UserReviews = dynamic(() => import("./components/user-reviews/user-reviews"));
+const SiteMetadata = dynamic(() => import("./components/site-metadata/site-metadata"));
+const Collaborators = dynamic(() => import("./components/collaborators/collaborators"));
+const Footer = dynamic(() => import("./components/footer/footer"));
+const FadeInSection = dynamic(() => import("./components/global/animations/fade-in"));
 
-//  Wrapper for scroll-based fade-in animation (UX enhancement)
-import FadeInSection from "./components/global/animations/fade-in";
+// Static array for maintainable section ordering
+const sections = [
+  { component: Hero, key: 'hero' },
+  { component: Posters, key: 'posters' },
+  { component: FiltersCardsChannels, key: 'filters' },
+  { component: UserReviews, key: 'reviews' },
+  { component: SiteMetadata, key: 'metadata' },
+  { component: Collaborators, key: 'collaborators' },
+  { component: Footer, key: 'footer' }
+];
 
 export default function Home() {
   return (
-    //  Root layout container using module-scoped styles for isolation
     <div className={styles.MainWrapper}>
-
-      {/*  Sticky top navigation bar */}
       <TopNavigationBar />
-
-      {/*  Hero section with entry animation */}
-      <FadeInSection><Hero /></FadeInSection>
-
-      {/*  Featured posters/cards */}
-      <FadeInSection><Posters /></FadeInSection>
-
-      {/*  Filters and content discovery section */}
-      <FadeInSection><FiltersCardsChannels /></FadeInSection>
-
-      {/*  User testimonials and reviews */}
-      <FadeInSection><UserReviews /></FadeInSection>
-
-      {/*  SEO and platform-related metadata display */}
-      <FadeInSection><SiteMetadata /></FadeInSection>
-
-      {/*  Partner/collaborator highlights */}
-      <FadeInSection><Collaborators /></FadeInSection>
-
-      {/*  Footer with site-wide links, social, and credits */}
-      <FadeInSection><Footer /></FadeInSection>
+      
+      {sections.map(({ component: Component, key }) => (
+        <FadeInSection key={key}>
+          <Component />
+        </FadeInSection>
+      ))}
     </div>
   );
 }

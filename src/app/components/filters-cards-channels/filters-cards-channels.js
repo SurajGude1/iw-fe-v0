@@ -162,14 +162,15 @@ export default function SocialCards() {
     return { ...baseOptions, ...categoryOptions };
   }, [categories]);
 
-  const youtubeChannels = useMemo(() => {
-    return advertisements
-      .filter(ad => ad.advertiseType === 'youtube' && ad.youtubeChannelName)
-      .map(ad => ({
-        name: ad.youtubeChannelName,
-        url: ad.youtubeChannelUrl || ad.redirectionUrl
-      }));
-  }, [advertisements]);
+const youtubeChannels = useMemo(() => (
+  (advertisements ?? [])
+    .filter(ad => ad.advertiseType === 'youtube' && ad.youtubeChannelName)
+    .map(ad => ({
+      name: ad.youtubeChannelName,
+      url: ad.youtubeChannelUrl || ad.redirectionUrl
+    }))
+), [advertisements]);
+
 
   // ==============================================
   // Search and Filter Functionality
@@ -534,7 +535,7 @@ function Sidebar({ youtubeChannels }) {
             </a>
           ))
         ) : (
-          <p className={styles.NoChannels}>No featured YouTube channels available</p>
+          <p className={styles.NoChannels}>Data available</p>
         )}
       </div>
     </aside>

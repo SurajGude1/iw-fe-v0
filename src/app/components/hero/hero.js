@@ -30,10 +30,9 @@ const VideoPlayer = memo(({ src }) => (
     <source src={src} type="video/mp4" />
   </video>
 ));
-
 VideoPlayer.displayName = 'VideoPlayer';
 
-// Skeleton Loader Components
+// Skeleton Components
 const CardSkeleton = () => (
   <div className={styles.Card}>
     <div className={styles.CardContent}>
@@ -95,6 +94,7 @@ function Hero() {
   const intervalRef = useRef(null);
   const videoIntervalRef = useRef(null);
 
+  // Load posts and ads
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -102,20 +102,18 @@ function Hero() {
           fetchPosts(),
           fetchAdvertisements()
         ]);
-        
-        setPosts(postsData);
-        setAdvertisements(adsData);
-        
-        // Filter only video type ads
-        const videoAds = adsData.filter(ad => ad.advertiseType === 'video');
-        setVideoAds(videoAds);
-        
-        // Initialize video indices
-        if (videoAds.length > 0) {
-          setCurrentVideoIndices([
-            0 % videoAds.length,
-            Math.min(1, videoAds.length - 1) % videoAds.length
-          ]);
+
+        const safePosts = Array.isArray(postsData) ? postsData : [];
+        const safeAds = Array.isArray(adsData) ? adsData : [];
+
+        setPosts(safePosts);
+        setAdvertisements(safeAds);
+
+        const videoAdsList = safeAds.filter(ad => ad.advertiseType === 'video');
+        setVideoAds(videoAdsList);
+
+        if (videoAdsList.length > 0) {
+          setCurrentVideoIndices([0, Math.min(1, videoAdsList.length - 1)]);
         }
       } catch (err) {
         console.error('Failed to fetch data:', err);
@@ -138,18 +136,10 @@ function Hero() {
         ]);
       }, 15000);
     }
-
-    return () => {
-      if (videoIntervalRef.current) {
-        clearInterval(videoIntervalRef.current);
-      }
-    };
+    return () => clearInterval(videoIntervalRef.current);
   }, [videoAds]);
 
-  const currentCard = useMemo(() => {
-    if (!posts.length) return null;
-    return posts[currentCardIndex];
-  }, [posts, currentCardIndex]);
+  const currentCard = useMemo(() => posts[currentCardIndex] || null, [posts, currentCardIndex]);
 
   const onClickArrowHandler = useCallback((post) => {
     window.open(
@@ -159,23 +149,15 @@ function Hero() {
     );
   }, []);
 
+  // Sanitize post content safely on client
   useEffect(() => {
     if (typeof window !== 'undefined' && currentCard?.postContent) {
       const DOMPurify = require('dompurify');
       const sanitizeConfig = {
-        FORBID_TAGS: [
-          'img', 'video', 'iframe', 'picture', 'source', 'svg',
-          'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'figure', 'header'
-        ],
-        FORBID_ATTR: ['src', 'poster', 'alt', 'width', 'height'],
-        ALLOWED_TAGS: [
-          'p', 'br', 'ul', 'ol', 'li',
-          'strong', 'em', 'b', 'i', 'u', 'a',
-          'span', 'div',
-          'table', 'thead', 'tbody', 'tr', 'td', 'th',
-          'blockquote', 'code', 'pre'
-        ],
-        ALLOWED_ATTR: ['href', 'target', 'rel', 'class', 'id', 'style'],
+        FORBID_TAGS: ['img', 'video', 'iframe', 'picture', 'source', 'svg', 'h1','h2','h3','h4','h5','h6','figure','header'],
+        FORBID_ATTR: ['src','poster','alt','width','height'],
+        ALLOWED_TAGS: ['p','br','ul','ol','li','strong','em','b','i','u','a','span','div','table','thead','tbody','tr','td','th','blockquote','code','pre'],
+        ALLOWED_ATTR: ['href','target','rel','class','id','style'],
       };
       const sanitized = DOMPurify.sanitize(currentCard.postContent, sanitizeConfig);
       setSanitizedSummary(sanitized);
@@ -187,10 +169,9 @@ function Hero() {
     clearInterval(intervalRef.current);
   }, []);
 
-  const handleHoverEnd = useCallback(() => {
-    setIsHovered(false);
-  }, []);
+  const handleHoverEnd = useCallback(() => setIsHovered(false), []);
 
+  // Auto-slide posts
   useEffect(() => {
     if (!isHovered && posts.length > 0) {
       intervalRef.current = setInterval(() => {
@@ -200,53 +181,39 @@ function Hero() {
           setCurrentCardIndex(prev => (prev + 1) % posts.length);
           setCurtainPhase('opening');
 
-          const openTimer = setTimeout(() => {
-            setCurtainPhase('open');
-          }, 800);
-
+          const openTimer = setTimeout(() => setCurtainPhase('open'), 800);
           return () => clearTimeout(openTimer);
         }, 800);
 
         return () => clearTimeout(closeTimer);
       }, 10000);
     }
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
+    return () => clearInterval(intervalRef.current);
   }, [isHovered, posts.length]);
 
+  // Preload next image
   useEffect(() => {
     if (posts.length > 0) {
       const nextIndex = (currentCardIndex + 1) % posts.length;
       const nextImage = new Image();
-      nextImage.src = posts[nextIndex].thumbnailUrl;
+      nextImage.src = posts[nextIndex]?.thumbnailUrl;
     }
   }, [currentCardIndex, posts]);
 
-  if (loading) {
-    return (
-      <div className={styles.Hero} role="region" aria-label="Featured content loading">
-        <CardSkeleton />
-        <SummarySkeleton />
-        <VideoAdSkeleton />
-      </div>
-    );
-  }
+  if (loading) return (
+    <div className={styles.Hero} role="region" aria-label="Featured content loading">
+      <CardSkeleton />
+      <SummarySkeleton />
+      <VideoAdSkeleton />
+    </div>
+  );
 
-  if (error) {
-    return <div className={styles.Hero}>Error loading featured content</div>;
-  }
-
-  if (!currentCard) {
-    return <div className={styles.Hero}>No featured content available</div>;
-  }
+  if (error) return <div className={styles.Hero}>Error loading featured content</div>;
+  if (!currentCard) return <div className={styles.Hero}>No featured content available</div>;
 
   return (
     <div className={styles.Hero} role="region" aria-label="Featured content">
-      {/* Main Card (Left) */}
+      {/* Main Card */}
       <article
         className={styles.Card}
         onMouseEnter={handleHover}
@@ -256,29 +223,14 @@ function Hero() {
         itemType="https://schema.org/Article"
       >
         <div className={styles.CardContent}>
-          {/* Curtain overlay with animation phases */}
-          <div
-            className={`
-              ${styles.Curtain}
-              ${curtainPhase === 'closing' ? styles.curtainClose : ''}
-              ${curtainPhase === 'opening' ? styles.curtainOpen : ''}
-            `}
-            aria-hidden="true"
-          />
-
-          {/* Card content */}
+          <div className={`${styles.Curtain} ${curtainPhase === 'closing' ? styles.curtainClose : ''} ${curtainPhase === 'opening' ? styles.curtainOpen : ''}`} aria-hidden="true" />
           <div className={styles.TopSection}>
             <div className={styles.AuthorSection} itemProp="author">
               <span className={styles.AuthorName} itemProp="name">{currentCard.author}</span>
-              <time
-                className={styles.DatePosted}
-                dateTime={currentCard.postCreatedOn}
-                itemProp="datePublished"
-              >
+              <time className={styles.DatePosted} dateTime={currentCard.postCreatedOn} itemProp="datePublished">
                 {new Date(currentCard.postCreatedOn).toLocaleDateString()}
               </time>
             </div>
-
             <div className={styles.ImageWrapper}>
               <OptimizedImage
                 src={currentCard.thumbnailUrl}
@@ -291,10 +243,8 @@ function Hero() {
                 itemProp="image"
               />
             </div>
-
             <h3 className={styles.Title} itemProp="headline">{currentCard.postTitle}</h3>
           </div>
-
           <div className={styles.BottomSection}>
             <div className={styles.Divider} />
             <div className={styles.Actions}>
@@ -315,7 +265,7 @@ function Hero() {
         </div>
       </article>
 
-      {/* Summary Card (Center) */}
+      {/* Summary */}
       <summary
         className={styles.Summary}
         onMouseEnter={handleHover}
@@ -324,22 +274,9 @@ function Hero() {
         itemType="https://schema.org/Article"
       >
         <div className={styles.SummaryContentContainer}>
-          {/* Curtain overlay with animation phases */}
-          <div
-            className={`
-              ${styles.Curtain}
-              ${curtainPhase === 'closing' ? styles.curtainClose : ''}
-              ${curtainPhase === 'opening' ? styles.curtainOpen : ''}
-            `}
-            aria-hidden="true"
-          />
-
+          <div className={`${styles.Curtain} ${curtainPhase === 'closing' ? styles.curtainClose : ''} ${curtainPhase === 'opening' ? styles.curtainOpen : ''}`} aria-hidden="true" />
           <h2 className={styles.SummaryTitle} itemProp="headline">{currentCard.postTitle}</h2>
-          <div
-            className={styles.SummaryContent}
-            itemProp="description"
-            dangerouslySetInnerHTML={{ __html: sanitizedSummary }}
-          />
+          <div className={styles.SummaryContent} itemProp="description" dangerouslySetInnerHTML={{ __html: sanitizedSummary }} />
           <div className={styles.SummaryFooter}>
             <Button
               text="Read More"
@@ -352,7 +289,7 @@ function Hero() {
         </div>
       </summary>
 
-      {/* Video Ads (Right) */}
+      {/* Video Ads */}
       <aside className={styles.VideoAds} aria-label="Featured videos">
         <h3 className={styles.SummaryTitle}>Featured</h3>
         <div className={styles.VideoContainer}>

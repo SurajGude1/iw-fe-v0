@@ -1,116 +1,60 @@
 'use client';
 
-/**
- * Optimized Logo Component
- * 
- * A high-performance logo component that dynamically adapts to background contrast
- * while maintaining all original styling and functionality.
- * 
- * Key Optimizations:
- * - Memoized all calculations and handlers
- * - Proper cleanup of all observers and timers
- * - Added debouncing for performance
- * - Enhanced null safety
- * - Better code organization
- * - Added performance comments
- * 
- * Note: All styling remains exactly as original
- */
-
 import { memo, useLayoutEffect, useState, useRef, useCallback } from 'react';
 import styles from './logo.module.css';
 
-// Performance Constants
+// Constants moved outside component to prevent recreation
 const LUMINANCE_THRESHOLD = 0.7;
-const DEBOUNCE_DELAY_MS = 100; // Optimal for visual changes
-const RGB_WEIGHTS = Object.freeze({ r: 0.299, g: 0.587, b: 0.114 }); // Freeze for safety
+const DEBOUNCE_DELAY_MS = 100;
+const RGB_WEIGHTS = { r: 0.299, g: 0.587, b: 0.114 };
 
 const Logo = memo(() => {
-  // Refs
   const logoRef = useRef(null);
-  const mutationObserverRef = useRef(null);
-  const resizeObserverRef = useRef(null);
-  const debounceTimerRef = useRef(null);
-  
-  // State
   const [isLightBackground, setIsLightBackground] = useState(false);
+  const observerRef = useRef(null);
 
-  /**
-   * Memoized luminance calculation
-   * Uses pre-calculated weights for performance
-   */
+  // Memoized luminance calculation
   const calculateLuminance = useCallback((r, g, b) => {
     return (RGB_WEIGHTS.r * r + RGB_WEIGHTS.g * g + RGB_WEIGHTS.b * b) / 255;
   }, []);
 
-  /**
-   * Debounced background check
-   * - Prevents layout thrashing
-   * - Null-safe DOM operations
-   * - Clean color parsing
-   */
+  // Debounced background check with requestAnimationFrame
   const checkBackground = useCallback(() => {
-    // Clear any pending debounce
-    if (debounceTimerRef.current) {
-      clearTimeout(debounceTimerRef.current);
-    }
+    if (!logoRef.current) return;
 
-    // Debounce the actual check
-    debounceTimerRef.current = setTimeout(() => {
-      const node = logoRef.current;
-      if (!node) return;
-
+    requestAnimationFrame(() => {
       try {
-        const bgColor = getComputedStyle(node).backgroundColor;
-        const rgbMatch = bgColor.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-
+        const bgColor = getComputedStyle(logoRef.current).backgroundColor;
+        const rgbMatch = bgColor.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*\d+\.?\d*)?\)$/);
+        
         if (rgbMatch) {
-          const [r, g, b] = rgbMatch.slice(1).map(Number);
+          const [r, g, b] = rgbMatch.slice(1, 4).map(Number);
           const luminance = calculateLuminance(r, g, b);
           setIsLightBackground(luminance > LUMINANCE_THRESHOLD);
         }
       } catch (e) {
-        console.error('Background check failed:', e);
+        if (process.env.NODE_ENV !== 'production') {
+          console.error('Background detection error:', e);
+        }
       }
-    }, DEBOUNCE_DELAY_MS);
+    });
   }, [calculateLuminance]);
 
-  /**
-   * Effect for setting up observers
-   * - Handles initial check
-   * - Sets up mutation and resize observers
-   * - Comprehensive cleanup
-   */
+  // Optimized observer setup
   useLayoutEffect(() => {
-    // Initial check
-    checkBackground();
+    const observer = new ResizeObserver(checkBackground);
+    observerRef.current = observer;
 
-    // Mutation Observer for style/class changes
-    mutationObserverRef.current = new MutationObserver(checkBackground);
     if (logoRef.current) {
-      mutationObserverRef.current.observe(logoRef.current, {
-        attributes: true,
-        attributeFilter: ['style', 'class'],
-      });
+      checkBackground();
+      observer.observe(logoRef.current);
     }
 
-    // Resize Observer for layout changes
-    resizeObserverRef.current = new ResizeObserver(checkBackground);
-    if (logoRef.current) {
-      resizeObserverRef.current.observe(logoRef.current);
-    }
-
-    // Cleanup function
     return () => {
-      mutationObserverRef.current?.disconnect();
-      resizeObserverRef.current?.disconnect();
-      if (debounceTimerRef.current) {
-        clearTimeout(debounceTimerRef.current);
-      }
+      observer.disconnect();
     };
   }, [checkBackground]);
 
-  // Render - identical to original
   return (
     <header
       ref={logoRef}
@@ -118,7 +62,7 @@ const Logo = memo(() => {
       role="img"
       aria-label="ReadinSpeed - Timeless Voices"
     >
-      <p className={styles.Header}>
+      <h1 className={styles.Header}>
         Readin
         <span 
           className={isLightBackground ? styles.lightBackgroundSpan : ''}
@@ -126,7 +70,7 @@ const Logo = memo(() => {
         >
           Speed
         </span>
-      </p>
+      </h1>
       <span className={styles.SubHeader} aria-hidden="true">
         TIMELESS VOICES
       </span>
